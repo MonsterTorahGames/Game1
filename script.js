@@ -23,17 +23,16 @@ let masteredWords = new Set(JSON.parse(localStorage.getItem('whackWordMastered')
 
 // 100 Random Accessories (Emoji-based for variety)
 const ACCESSORIES = [
-    '🎩', '👑', '🎀', '🎁', '⭐', '🌟', '✨', '💫', '🔥', '❄️',
-    '🌈', '🌸', '🌺', '🌻', '🌼', '🍀', '🍄', '🦋', '🐝', '🐞',
-    '🦄', '🐸', '🐙', '🦑', '🦐', '🦀', '🐠', '🐟', '🐳', '🐋',
-    '🦈', '🐊', '🐢', '🐍', '🦎', '🐉', '🐲', '🦕', '🦖', '🐘',
-    '🦏', '🦛', '🐪', '🦒', '🦘', '🦡', '🦔', '🐿️', '🦇', '🦅',
-    '🦆', '🦉', '🦚', '🦜', '🐌', '🐛', '🦗', '🕷️', '🦂', '💎',
-    '💍', '💰', '🏆', '🎖️', '🏅', '🥇', '🎯', '🎲', '🎮', '🕹️',
-    '🧩', '🎨', '🖌️', '🎭', '🎪', '🎢', '🎡', '🎠', '🚀', '🛸',
-    '🌙', '☀️', '⚡', '🌊', '🔮', '🧿', '🪬', '🎵', '🎶', '🎸',
-    '🥁', '🎺', '🎻', '🪘', '🍕', '🍔', '🍟', '🌮', '🍦', '🧁',
-    '🍩', '🍪', '🍫', '🍬', '🍭', '🧸', '🪀', '🪁', '🎈', '🎉'
+    '🥕 Carrot costume',
+    '👕 Tzitzis',
+    '🎽 Shirt',
+    '👗 Dress',
+    '👗 Skirt',
+    '💍 Bracelet',
+    '🎧 Ear muffin',
+    '👟 Shoes',
+    '🧥 Coat',
+    '⚔️ Sword'
 ];
 
 // DOM Elements
@@ -199,9 +198,6 @@ function resetMonster() {
     monsterScale = 1.0;
     earnedAccessories = []; // Clear accessories
     monsterEl.classList.remove('dead', 'happy', 'sad');
-    
-    // Hide all body parts
-    document.querySelectorAll('.part-visible').forEach(el => el.classList.remove('part-visible'));
     
     // Remove all accessories
     document.querySelectorAll('.accessory').forEach(el => el.remove());

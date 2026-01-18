@@ -139,10 +139,17 @@ body {
 /* Accessories */
 .accessory {
     position: absolute;
-    font-size: 1.8rem;
-    z-index: 10;
+    font-size: 1rem;
     pointer-events: none;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    z-index: 10;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: #1a1a2e;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .monster {
@@ -219,95 +226,6 @@ body {
     background: #1a1a2e;
     border-radius: 0 0 15px 15px;
     transition: all 0.2s;
-}
-
-/* Monster Parts */
-.hidden-part {
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.part-visible {
-    opacity: 1 !important;
-    transform: scale(1) !important;
-}
-
-/* Legs */
-.leg {
-    position: absolute;
-    bottom: -15px;
-    width: 25px;
-    height: 30px;
-    background: var(--success);
-    border-radius: 0 0 15px 15px;
-    z-index: -1;
-}
-
-.leg.left {
-    left: 30px;
-}
-
-.leg.right {
-    right: 30px;
-}
-
-/* Arms */
-.arm {
-    position: absolute;
-    top: 60px;
-    width: 30px;
-    height: 12px;
-    background: var(--success);
-    border-radius: 10px;
-    z-index: -1;
-}
-
-.arm.left {
-    left: -20px;
-    transform-origin: right center;
-    transform: rotate(20deg);
-}
-
-.arm.right {
-    right: -20px;
-    transform-origin: left center;
-    transform: rotate(-20deg);
-}
-
-/* Belly */
-.belly {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-}
-
-/* Horns */
-.horn {
-    position: absolute;
-    top: -25px;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-bottom: 30px solid #F72585;
-    /* Pink horns */
-    z-index: -2;
-}
-
-.horn.left {
-    left: 20px;
-    transform: rotate(-20deg);
-}
-
-.horn.right {
-    right: 20px;
-    transform: rotate(20deg);
 }
 
 /* Monster States */
