@@ -253,6 +253,9 @@ function nextRound() {
 function showTeachingPhase(word) {
     isProcessing = true;
     
+    // Fallback emoji if missing
+    const correctEmoji = word.emoji || '📖';
+    
     // Update UI
     teachHebrewEl.innerText = word.hebrew;
     teachEnglishEl.innerText = word.english;
@@ -260,16 +263,23 @@ function showTeachingPhase(word) {
     audioHint.classList.add('hidden');
     startRoundBtn.classList.add('hidden');
     
-    // Choose 3 unique random decoy emojis
-    const distractors = Array.from(new Set(
+    // Choose unique random decoy emojis
+    let distractorPool = Array.from(new Set(
         chumashWords
-            .filter(w => w.emoji && w.emoji !== word.emoji)
+            .filter(w => w.emoji && w.emoji !== correctEmoji)
             .map(w => w.emoji)
-    ))
-    .sort(() => 0.5 - Math.random())
-    .slice(0, 3);
+    ));
+
+    // If pool is too small, add some generic ones
+    if (distractorPool.length < 3) {
+        distractorPool = distractorPool.concat(['❓', '✨', '⭐', '🔥', '🌈'].filter(e => e !== correctEmoji));
+    }
+
+    const distractors = distractorPool
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3);
     
-    const choices = [word.emoji, ...distractors].sort(() => 0.5 - Math.random());
+    const choices = [correctEmoji, ...distractors].sort(() => 0.5 - Math.random());
     
     choices.forEach(emoji => {
         const btn = document.createElement('button');
@@ -277,7 +287,7 @@ function showTeachingPhase(word) {
         btn.innerText = emoji;
         
         btn.onclick = () => {
-            if (emoji === word.emoji) {
+            if (emoji === correctEmoji) {
                 // Correct!
                 btn.classList.add('correct-emoji');
                 // Disable all buttons

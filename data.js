@@ -81,27 +81,33 @@ const chumashWords = [
   },
   {
     "english": "he sent",
-    "hebrew": "שָׁלַח"
+    "hebrew": "שָׁלַח",
+    "emoji": "✉️"
   },
   {
     "english": "He took",
-    "hebrew": "לָקַח"
+    "hebrew": "לָקַח",
+    "emoji": "✊"
   },
   {
     "english": "He gave / He put",
-    "hebrew": "נָתַן"
+    "hebrew": "נָתַן",
+    "emoji": "🎁"
   },
   {
     "english": "He did / He made",
-    "hebrew": "עָשָׂה"
+    "hebrew": "עָשָׂה",
+    "emoji": "🛠️"
   },
   {
     "english": "He loved",
-    "hebrew": "אָהַב"
+    "hebrew": "אָהַב",
+    "emoji": "❤️"
   },
   {
     "english": "He called / He  read",
-    "hebrew": "קָרָא"
+    "hebrew": "קָרָא",
+    "emoji": "📖"
   },
   {
     "english": "on",
@@ -129,15 +135,18 @@ const chumashWords = [
   },
   {
     "english": "he saw",
-    "hebrew": "רָאָה"
+    "hebrew": "רָאָה",
+    "emoji": "👁️"
   },
   {
     "english": "he spoke",
-    "hebrew": "דִבֵּר"
+    "hebrew": "דִבֵּר",
+    "emoji": "💬"
   },
   {
     "english": "he went out",
-    "hebrew": "יָצָא"
+    "hebrew": "יָצָא",
+    "emoji": "🚪"
   },
   {
     "english": "land",
