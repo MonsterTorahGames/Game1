@@ -253,8 +253,8 @@ function nextRound() {
 function showTeachingPhase(word) {
     isProcessing = true;
     
-    // Fallback emoji if missing
-    const correctEmoji = word.emoji || '📖';
+    // Fallback emoji if missing (show blank box)
+    const correctEmoji = word.emoji || '';
     
     // Update UI
     teachHebrewEl.innerText = word.hebrew;
@@ -270,9 +270,9 @@ function showTeachingPhase(word) {
             .map(w => w.emoji)
     ));
 
-    // If pool is too small, add some generic ones
-    if (distractorPool.length < 3) {
-        distractorPool = distractorPool.concat(['❓', '✨', '⭐', '🔥', '🌈'].filter(e => e !== correctEmoji));
+    // If pool is too small, allow blank boxes (don't force emojis)
+    while (distractorPool.length < 3) {
+        distractorPool.push('');
     }
 
     const distractors = distractorPool
