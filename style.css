@@ -616,3 +616,132 @@ body {
 .pop-in {
     animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .game-container {
+        padding: 10px;
+        max-height: none;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .screen {
+        position: relative;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .game-layout {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .left-panel {
+        flex: none;
+        margin-bottom: 10px;
+    }
+
+    .monster-container {
+        width: 150px;
+        height: 150px;
+    }
+
+    .monster {
+        width: 90px;
+        height: 90px;
+    }
+
+    .monster::before,
+    .monster::after {
+        width: 15px;
+        height: 25px;
+    }
+
+    .eyes {
+        top: 25px;
+        gap: 10px;
+    }
+
+    .eye {
+        width: 15px;
+        height: 15px;
+    }
+
+    .eye::after {
+        width: 6px;
+        height: 6px;
+    }
+
+    .mouth {
+        bottom: 20px;
+        width: 20px;
+    }
+
+    .accessory {
+        font-size: 1.4rem;
+    }
+
+    .right-panel {
+        flex: none;
+        width: 100%;
+    }
+
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .icon-bounce {
+        font-size: 3.5rem;
+    }
+
+    .primary-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1.2rem;
+    }
+
+    .hud {
+        margin-bottom: 1rem;
+    }
+
+    .value {
+        font-size: 1.5rem;
+    }
+
+    .target-word-container {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    #target-word {
+        font-size: 1.8rem;
+    }
+
+    .grid-container {
+        gap: 10px;
+    }
+
+    .word-card {
+        min-height: 60px;
+        padding: 1rem 0.5rem;
+    }
+
+    .word-card span {
+        font-size: 1.4rem;
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .oops-title {
+        font-size: 2rem;
+    }
+
+    .mnemonic-text {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+    }
+}
