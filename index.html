@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chumash Whack-a-Word</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Varela+Round&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="game-container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen">
+            <h1 class="title">CHUMASH<br>WHACK-A-WORD</h1>
+            <div class="icon-bounce">🔨</div>
+            <button id="start-btn" class="primary-btn">PLAY NOW</button>
+            <div class="instructions">
+                <p>Match the English word to the Hebrew word!</p>
+                <p>Be fast - you only have <span id="time-limit-display">10.0</span>s!</p>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <div class="game-layout">
+                <div class="left-panel">
+                    <div id="monster-container" class="monster-container">
+                        <div id="monster" class="monster">
+                            <div class="horn left hidden-part"></div>
+                            <div class="horn right hidden-part"></div>
+                            <div class="arm left hidden-part"></div>
+                            <div class="arm right hidden-part"></div>
+                            <div class="leg left hidden-part"></div>
+                            <div class="leg right hidden-part"></div>
+                            <div class="belly hidden-part"></div> <!-- Belly Spot -->
+
+                            <div class="eyes">
+                                <div class="eye left"></div>
+                                <div class="eye right"></div>
+                            </div>
+                            <div class="mouth"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-panel">
+                    <div class="hud">
+                        <div class="score-box">
+                            <span class="label">STREAK</span>
+                            <span id="streak" class="value">0</span>
+                        </div>
+                        <div class="timer-bar-container">
+                            <div id="timer-bar" class="timer-bar"></div>
+                        </div>
+                        <div class="score-box">
+                            <span class="label">BEST</span>
+                            <span id="best-streak" class="value">0</span>
+                        </div>
+                    </div>
+
+                    <div class="target-word-container">
+                        <h2 id="target-word">APPLE</h2>
+                    </div>
+
+                    <div id="grid-container" class="grid-container">
+                        <!-- Bubbles will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-modal" class="feedback-modal hidden">
+                <div class="modal-content">
+                    <h2 class="oops-title">Oops!</h2>
+                    <p class="trick-label">MEMORY TRICK:</p>
+                    <p id="mnemonic-text" class="mnemonic-text">...</p>
+                    <button id="resume-btn" class="primary-btn small-btn">GOT IT</button>
+                </div>
+            </div>
+
+            <div id="feedback" class="feedback">Good!</div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over-screen" class="screen hidden">
+            <h2 class="game-over-title">GAME OVER</h2>
+            <div class="final-score-container">
+                <p>FINAL STREAK</p>
+                <h1 id="final-score">12</h1>
+            </div>
+            <div class="best-score-container">
+                <p>BEST: <span id="final-best">15</span></p>
+            </div>
+            <button id="restart-btn" class="primary-btn">PLAY AGAIN</button>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
