@@ -252,8 +252,10 @@ function startTimer() {
     let startTime = Date.now();
     let endTime = startTime + maxTime;
     
+    // Reset state instantly
     timerBar.style.width = '100%';
-    timerBar.style.backgroundColor = '#4CC9F0'; 
+    // Reset to original gradient
+    timerBar.style.background = 'linear-gradient(90deg, #F72585, #4CC9F0)'; 
     
     timer = setInterval(() => {
         if (currentState !== GAME_STATE.PLAYING || isProcessing) return;
@@ -262,11 +264,12 @@ function startTimer() {
         let remaining = endTime - now;
         let pct = (remaining / maxTime) * 100;
         
+        // Critical time warning (red)
         if (pct <= 30) {
-            timerBar.style.backgroundColor = '#EF476F'; 
+            timerBar.style.background = '#EF476F'; // Overrides the gradient
         }
         
-        timerBar.style.width = `${pct}%`;
+        timerBar.style.width = `${Math.max(0, pct)}%`;
         
         if (remaining <= 0) {
             clearInterval(timer);
