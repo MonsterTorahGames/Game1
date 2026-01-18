@@ -49,9 +49,6 @@ const finalScoreEl = document.getElementById('final-score');
 const finalBestEl = document.getElementById('final-best');
 // New Elements
 const monsterEl = document.getElementById('monster');
-const feedbackModal = document.getElementById('feedback-modal');
-const mnemonicTextEl = document.getElementById('mnemonic-text');
-const resumeBtn = document.getElementById('resume-btn');
 
 // Teaching Phase Elements
 const teachingModal = document.getElementById('teaching-modal');
@@ -439,37 +436,21 @@ function handleWrongAnswer(correctWord, btnElement) {
         return;
     }
 
-    // Show Mnemonic Modal logic
+    // NEW: Un-master the word and show Teaching Phase
+    masteredWords.delete(correctWord.hebrew);
+    localStorage.setItem('whackWordMastered', JSON.stringify(Array.from(masteredWords)));
+    
     setTimeout(() => {
-        showFeedbackModal(correctWord);
+        showTeachingPhase(correctWord);
     }, 1000);
 }
 
-function showFeedbackModal(word) {
-    // Determine Mnemonic
-    const trick = word.mnemonic || "Say it out loud: " + word.english + " ... " + word.hebrew;
-    mnemonicTextEl.innerHTML = trick;
-    
-    feedbackModal.classList.remove('hidden');
-    
-    // Queue Logic: Add back to queue in 2 turns
-    // If we just failed 'Av', we want to see it again soon.
-    upcomingQueue.push(getRandomWords(1)[0]); // Random buffer
-    upcomingQueue.push(getRandomWords(1)[0]); // Random buffer
-    upcomingQueue.push(word); // The failed word again
-    
-    console.log("Queued word to return:", word.english);
-}
 
+// Event Listeners
 startRoundBtn.onclick = () => {
     isProcessing = false;
     teachingModal.classList.add('hidden');
     renderRound();
-};
-
-resumeBtn.onclick = () => {
-    feedbackModal.classList.add('hidden');
-    nextRound();
 };
 
 function gameOver(reason) {
