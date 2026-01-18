@@ -487,6 +487,7 @@ body {
 }
 
 .emoji-btn {
+    position: relative;
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
@@ -510,6 +511,17 @@ body {
     background: var(--error);
     opacity: 0.5;
     pointer-events: none;
+}
+
+.emoji-btn.wrong-emoji::after {
+    content: '❌';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    pointer-events: none;
+    z-index: 5;
 }
 
 .audio-hint {
