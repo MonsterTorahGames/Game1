@@ -267,12 +267,14 @@ function showTeachingPhase(word) {
     audioHint.classList.add('hidden');
     startRoundBtn.classList.add('hidden');
     
-    // Choose 3 random decoy emojis
-    const distractors = chumashWords
-        .filter(w => w.emoji && w.emoji !== word.emoji)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 3)
-        .map(w => w.emoji);
+    // Choose 3 unique random decoy emojis
+    const distractors = Array.from(new Set(
+        chumashWords
+            .filter(w => w.emoji && w.emoji !== word.emoji)
+            .map(w => w.emoji)
+    ))
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 3);
     
     const choices = [word.emoji, ...distractors].sort(() => 0.5 - Math.random());
     
@@ -464,6 +466,7 @@ function showFeedbackModal(word) {
 }
 
 startRoundBtn.onclick = () => {
+    isProcessing = false;
     teachingModal.classList.add('hidden');
     renderRound();
 };
