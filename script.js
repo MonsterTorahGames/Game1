@@ -19,6 +19,7 @@ let monsterScale = 1.0;
 let wordLives = {}; // Map word (hebrew) -> strikes (0 to 3)
 let upcomingQueue = []; // Queue for spaced repetition
 let earnedAccessories = []; // Accessories this session
+let masteredWords = new Set(JSON.parse(localStorage.getItem('whackWordMastered')) || []);
 
 // 100 Random Accessories (Emoji-based for variety)
 const ACCESSORIES = [
@@ -53,6 +54,14 @@ const feedbackModal = document.getElementById('feedback-modal');
 const mnemonicTextEl = document.getElementById('mnemonic-text');
 const resumeBtn = document.getElementById('resume-btn');
 
+// Teaching Phase Elements
+const teachingModal = document.getElementById('teaching-modal');
+const teachHebrewEl = document.getElementById('teach-hebrew');
+const teachEnglishEl = document.getElementById('teach-english');
+const teachingGrid = document.getElementById('teaching-grid');
+const audioHint = document.getElementById('audio-hint');
+const startRoundBtn = document.getElementById('start-round-btn');
+
 // Audio (Synthetic)
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioContext();
@@ -69,6 +78,24 @@ function playTone(freq, type, duration) {
     gain.connect(audioCtx.destination);
     osc.start();
     osc.stop(audioCtx.currentTime + duration);
+}
+
+function speakHebrew(text) {
+    if (!window.speechSynthesis) return;
+    
+    // Stop any existing speech
+    window.speechSynthesis.cancel();
+    
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'he-IL'; // Hebrew
+    utterance.rate = 0.8; // Slightly slower for clarity
+    
+    // Fallback search for a Hebrew voice if default fails
+    const voices = window.speechSynthesis.getVoices();
+    const hebrewVoice = voices.find(v => v.lang.startsWith('he'));
+    if (hebrewVoice) utterance.voice = hebrewVoice;
+    
+    window.speechSynthesis.speak(utterance);
 }
 
 // Helpers
@@ -213,16 +240,78 @@ function nextRound() {
     
     // Determine Target Word
     let target;
-    // 1. Check Queue for spaced repetition
     if (upcomingQueue.length > 0) {
         target = upcomingQueue.shift();
-        console.log("Playing queued word:", target.english);
     } else {
-        // 2. Pick Random
         target = chumashWords[Math.floor(Math.random() * chumashWords.length)];
     }
     
     currentCorrectWord = target;
+    
+    // Check if word is mastered
+    if (!masteredWords.has(target.hebrew) && target.emoji) {
+        showTeachingPhase(target);
+        return; // Wait for teaching phase to complete
+    }
+    
+    renderRound();
+}
+
+function showTeachingPhase(word) {
+    isProcessing = true;
+    
+    // Update UI
+    teachHebrewEl.innerText = word.hebrew;
+    teachEnglishEl.innerText = word.english;
+    teachingGrid.innerHTML = '';
+    audioHint.classList.add('hidden');
+    startRoundBtn.classList.add('hidden');
+    
+    // Choose 3 random decoy emojis
+    const distractors = chumashWords
+        .filter(w => w.emoji && w.emoji !== word.emoji)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3)
+        .map(w => w.emoji);
+    
+    const choices = [word.emoji, ...distractors].sort(() => 0.5 - Math.random());
+    
+    choices.forEach(emoji => {
+        const btn = document.createElement('button');
+        btn.className = 'emoji-btn';
+        btn.innerText = emoji;
+        
+        btn.onclick = () => {
+            if (emoji === word.emoji) {
+                // Correct!
+                btn.classList.add('correct-emoji');
+                // Disable all buttons
+                document.querySelectorAll('.emoji-btn').forEach(b => b.style.pointerEvents = 'none');
+                
+                // Pronounce
+                speakHebrew(word.hebrew);
+                
+                // Show hint and play button
+                audioHint.classList.remove('hidden');
+                startRoundBtn.classList.remove('hidden');
+                
+                // Mark as mastered for this session
+                masteredWords.add(word.hebrew);
+                localStorage.setItem('whackWordMastered', JSON.stringify(Array.from(masteredWords)));
+            } else {
+                // Wrong
+                btn.classList.add('wrong-emoji');
+                playTone(200, 'square', 0.2);
+            }
+        };
+        teachingGrid.appendChild(btn);
+    });
+    
+    teachingModal.classList.remove('hidden');
+}
+
+function renderRound() {
+    const target = currentCorrectWord;
     
     // Pick distractors including target
     const roundWords = getRandomWords(4, target); 
@@ -374,10 +463,15 @@ function showFeedbackModal(word) {
     console.log("Queued word to return:", word.english);
 }
 
-function resumeFromModal() {
+startRoundBtn.onclick = () => {
+    teachingModal.classList.add('hidden');
+    renderRound();
+};
+
+resumeBtn.onclick = () => {
     feedbackModal.classList.add('hidden');
     nextRound();
-}
+};
 
 function gameOver(reason) {
     currentState = GAME_STATE.GAME_OVER;

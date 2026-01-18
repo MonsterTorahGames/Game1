@@ -68,6 +68,7 @@ body {
     text-shadow: 0 4px 15px rgba(247, 37, 133, 0.5);
     background: linear-gradient(45deg, #F72585, #4CC9F0);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -530,6 +531,76 @@ body {
     font-size: 5rem;
     font-family: var(--font-display);
     color: var(--success);
+}
+
+/* Teaching Phase Styles */
+.teaching-content {
+    background: #4361EE;
+    /* Blue for learning */
+    color: white;
+    max-width: 450px;
+}
+
+.hebrew-large {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.english-small {
+    font-size: 1.5rem;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.instruction-text {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.teaching-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.emoji-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    font-size: 3rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.emoji-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.emoji-btn.correct-emoji {
+    background: var(--success);
+    border-color: white;
+    transform: scale(1.05);
+}
+
+.emoji-btn.wrong-emoji {
+    background: var(--error);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.audio-hint {
+    margin-bottom: 1.5rem;
+    animation: popIn 0.3s;
+}
+
+.audio-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
 }
 
 /* Animations */

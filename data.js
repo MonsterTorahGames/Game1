@@ -2,52 +2,62 @@ const chumashWords = [
   {
     "english": "(a) man",
     "hebrew": "אִישׁ",
-    "mnemonic": "Every **Ish** (issue) needs a **man** to solve it."
+    "mnemonic": "Every **Ish** (issue) needs a **man** to solve it.",
+    "emoji": "👨"
   },
   {
     "english": "(a) woman/wife",
     "hebrew": "אִשָׁה",
-    "mnemonic": "**I sha**ll always serve my **wife**."
+    "mnemonic": "**I sha**ll always serve my **wife**.",
+    "emoji": "👩"
   },
   {
     "english": "(a) father",
     "hebrew": "אָב",
-    "mnemonic": "My **Av**atar looks just like my **father**."
+    "mnemonic": "My **Av**atar looks just like my **father**.",
+    "emoji": "👴"
   },
   {
     "english": "(a) mother",
     "hebrew": "אֵם",
-    "mnemonic": "My **mother** loves **M**&Ms."
+    "mnemonic": "My **mother** loves **M**&Ms.",
+    "emoji": "👵"
   },
   {
     "english": "(a) son",
     "hebrew": "בֵּן",
-    "mnemonic": "My **son**'s name is **Ben**."
+    "mnemonic": "My **son**'s name is **Ben**.",
+    "emoji": "👦"
   },
   {
     "english": "(a) daughter",
     "hebrew": "בַּת",
-    "mnemonic": "My **daughter** plays with a baseball **bat**."
+    "mnemonic": "My **daughter** plays with a baseball **bat**.",
+    "emoji": "👧"
   },
   {
     "english": "(a) brother",
     "hebrew": "אָח",
-    "mnemonic": "My **brother** has an **Ach** (ache) in his stomach."
+    "mnemonic": "My **brother** has an **Ach** (ache) in his stomach.",
+    "emoji": "👱‍♂️"
   },
   {
     "english": "he said",
     "hebrew": "אָמַר",
-    "mnemonic": "**A mar**ine **said** Semper Fi."
+    "mnemonic": "**A mar**ine **said** Semper Fi.",
+    "emoji": "🗣️"
   },
   {
     "english": "he went",
     "hebrew": "הָלַך",
-    "mnemonic": "I **Ha-lach** (have luck) wherever **he went**."
+    "mnemonic": "I **Ha-lach** (have luck) wherever **he went**.",
+    "emoji": "🚶"
   },
   {
     "english": "to",
     "hebrew": "אֶל",
-    "mnemonic": "Take the **El**evator **to** the top."
+    "mnemonic": "Take the **El**evator **to** the top.",
+    "emoji": "➡️"
   },
   {
     "english": "all  / every / any",
@@ -159,43 +169,53 @@ const chumashWords = [
   },
   {
     "english": "(an) ear",
-    "hebrew": "אוֹזֶן"
+    "hebrew": "אוֹזֶן",
+    "emoji": "👂"
   },
   {
     "english": "(an) eye",
-    "hebrew": "עַיִן"
+    "hebrew": "עַיִן",
+    "emoji": "👁️"
   },
   {
     "english": "(a) heart",
-    "hebrew": "לֵב (לֵבָב)"
+    "hebrew": "לֵב (לֵבָב)",
+    "emoji": "❤️"
   },
   {
     "english": "(a) head / top",
-    "hebrew": "רֹֹאשׁ"
+    "hebrew": "רֹֹאשׁ",
+    "emoji": "👤"
   },
   {
     "english": "(a) foot",
-    "hebrew": "רֶגֶל"
+    "hebrew": "רֶגֶל",
+    "emoji": "👣"
   },
   {
     "english": "(a) hand",
-    "hebrew": "יָד"
+    "hebrew": "יָד",
+    "emoji": "✋"
   },
   {
     "english": "(a) mountain",
-    "hebrew": "הַר"
+    "hebrew": "הַר",
+    "emoji": "⛰️"
   },
   {
     "english": "Torah",
-    "hebrew": "תּוֹרָה"
+    "hebrew": "תּוֹרָה",
+    "emoji": "📜"
   },
   {
     "english": "(a) nation",
-    "hebrew": "עַם"
+    "hebrew": "עַם",
+    "emoji": "👫"
   },
   {
     "english": "(a) boy / lad",
-    "hebrew": "יֶלֶד"
+    "hebrew": "יֶלֶד",
+    "emoji": "👦"
   },
   {
     "english": "he opened",
@@ -283,11 +303,13 @@ const chumashWords = [
   },
   {
     "english": "(a) desert",
-    "hebrew": "מִדְבָּר"
+    "hebrew": "מִדְבָּר",
+    "emoji": "🌵"
   },
   {
     "english": "(a) voice /sound",
-    "hebrew": "קוֹל"
+    "hebrew": "קוֹל",
+    "emoji": "📢"
   },
   {
     "english": "he knew",
@@ -295,27 +317,33 @@ const chumashWords = [
   },
   {
     "english": "(a) camel",
-    "hebrew": "גָמָל"
+    "hebrew": "גָמָל",
+    "emoji": "🐪"
   },
   {
     "english": "Water",
-    "hebrew": "מַיִם"
+    "hebrew": "מַיִם",
+    "emoji": "💧"
   },
   {
     "english": "blood",
-    "hebrew": "דָם"
+    "hebrew": "דָם",
+    "emoji": "🩸"
   },
   {
     "english": "(an) ox",
-    "hebrew": "שׁוֹר"
+    "hebrew": "שׁוֹר",
+    "emoji": "🐂"
   },
   {
     "english": "day",
-    "hebrew": "יוֹם"
+    "hebrew": "יוֹם",
+    "emoji": "☀️"
   },
   {
     "english": "night",
-    "hebrew": "לַיְלָה"
+    "hebrew": "לַיְלָה",
+    "emoji": "🌙"
   },
   {
     "english": "(a) face/  (Front)",
@@ -323,7 +351,8 @@ const chumashWords = [
   },
   {
     "english": "(a) famine",
-    "hebrew": "רָעָב"
+    "hebrew": "רָעָב",
+    "emoji": "🏚️"
   },
   {
     "english": "as / when /while/ like",
@@ -351,7 +380,8 @@ const chumashWords = [
   },
   {
     "english": "mouth",
-    "hebrew": "פֶּה"
+    "hebrew": "פֶּה",
+    "emoji": "👄"
   },
   {
     "english": "one",
