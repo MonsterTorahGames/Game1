@@ -204,7 +204,7 @@ function resetMonster() {
 
 function setGameSpeed() {
     let speedDrop = Math.floor(streak / 5) * 500;
-    maxTime = Math.max(800, 10000 - speedDrop); 
+    maxTime = Math.max(3000, 10000 - speedDrop); 
 }
 
 // Game Logic
