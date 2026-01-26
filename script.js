@@ -58,6 +58,11 @@ const teachingGrid = document.getElementById('teaching-grid');
 const audioHint = document.getElementById('audio-hint');
 const startRoundBtn = document.getElementById('start-round-btn');
 
+// Study Phase Elements
+const studyModal = document.getElementById('study-modal');
+const studyList = document.getElementById('study-list');
+const startStudyBtn = document.getElementById('start-study-btn');
+
 // Audio (Synthetic)
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioContext();
@@ -207,6 +212,53 @@ function setGameSpeed() {
     maxTime = Math.max(3000, 10000 - speedDrop); 
 }
 
+function startStudyPhase() {
+    isProcessing = true;
+    
+    // Pick 5 random unmastered words (or just random if we ran out)
+    let candidates = chumashWords.filter(w => !masteredWords.has(w.hebrew));
+    if (candidates.length < 5) {
+        candidates = [...chumashWords];
+    }
+    
+    const studyWords = candidates.sort(() => 0.5 - Math.random()).slice(0, 5);
+    
+    // Populate the list
+    studyList.innerHTML = '';
+    studyWords.forEach(word => {
+        const item = document.createElement('div');
+        item.className = 'study-item';
+        // Fallback for missing emoji
+        const icon = word.emoji || '📖'; 
+        
+        item.innerHTML = `
+            <div style="display:flex; align-items:center; gap:10px;">
+                <span style="font-size:1.5rem;">${icon}</span>
+                <span class="study-hebrew">${word.hebrew}</span>
+            </div>
+            <span class="study-english">${word.english}</span>
+        `;
+        
+        // Play sound on click? Maybe later.
+        studyList.appendChild(item);
+    });
+    
+    studyModal.classList.remove('hidden');
+    
+    startStudyBtn.onclick = () => {
+        // Mark as mastered so they skip the individual teaching screen
+        studyWords.forEach(w => masteredWords.add(w.hebrew));
+        localStorage.setItem('whackWordMastered', JSON.stringify(Array.from(masteredWords)));
+        
+        // Add to queue to ensure they are tested immediately
+        upcomingQueue = [...studyWords];
+        
+        studyModal.classList.add('hidden');
+        isProcessing = false;
+        nextRound();
+    };
+}
+
 // Game Logic
 function startGame() {
     currentState = GAME_STATE.PLAYING;
@@ -222,7 +274,8 @@ function startGame() {
     gameOverScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
     
-    nextRound();
+    // Start with Study Phase instead of direct round
+    startStudyPhase();
 }
 
 function nextRound() {

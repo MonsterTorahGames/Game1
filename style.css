@@ -749,3 +749,34 @@ body {
         padding: 0.8rem;
     }
 }
+
+/* Study List Styles */
+.study-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.study-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.study-hebrew {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4CC9F0;
+}
+
+.study-english {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
